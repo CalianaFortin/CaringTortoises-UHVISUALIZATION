@@ -2,6 +2,7 @@ import React from 'react';
 import L from 'leaflet';
 import datas from '../../../data/campusmap.json';
 import 'leaflet/dist/leaflet.css';
+import './CovidMap.css';
 
 export class Covid19 extends React.Component {
   state = {};
