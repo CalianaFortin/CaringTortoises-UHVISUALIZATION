@@ -1,24 +1,37 @@
-/* PLAN TO ADD STUFF HERE */
-import React from 'react';
-import L from 'leaflet';
-import datas from '../../../data/campusmap.json';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, GeoJSON, TileLayer } from 'react-leaflet';
+import Loadin from './Loadin';
+import Legend from './Legend';
 import 'leaflet/dist/leaflet.css';
+import Load from '../../api/stuff/load';
 
-export class Covid19 extends React.Component {
-  state = {};
+const Covdid19 = () => {
+  const [buildings, setBuilding] = useState([]);
+  const load = () => {
+    const loadData = new Load();
+    loadData.load(setBuilding);
+  };
+  useEffect(load, []);
+  console.log(buildings);
+  return (<div>
+        {buildings.length === 0 ? <Loadin/> : <div>
+          <div className={'leaflet-container'}>
+            <MapContainer
+              style={{ height: '100vh' }}
+              zoom={18}
+              center={[21.3000, -157.8164]}
+              minZoom={17}
+          >
+            <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <GeoJSON data={buildings}/>
+          </MapContainer>;
+            <Legend/></div>
+        </div>}
+  </div>
+  );
+};
 
-  componentDidMount() {
-    console.log(datas);
-    const map = L.map('map').setView([0 ,0],1);
-    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=XC0B5O0zJTg9gUhUn68K', {
-      attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> ' +
-          '<a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>' }).addTo(map);
-    L.geoJSON(datas).addTo(map);
-
-  }
-
-  render() {
-    return (<div id='map'></div>);
-  }
-
-}
+export default Covdid19;
