@@ -5,6 +5,7 @@ import datas from '../../../data/campusmap.json';
 
 const CovidMap = () => {
   const onEachBuilding = (building, layer) => {
+    layer.options.fillColor = building.properties.color;
     const name = building.properties.Building;
     layer.bindPopup(name);
   };
@@ -12,7 +13,7 @@ const CovidMap = () => {
   return (<Map style={{ height: '90vh' }} zoom={17} center={[21.29930, -157.81563]}>
         <GeoJSON
             data={datas}
-            onEachFeature = {onEachBuilding}
+            onEachFeature={onEachBuilding}
         />;
         <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
