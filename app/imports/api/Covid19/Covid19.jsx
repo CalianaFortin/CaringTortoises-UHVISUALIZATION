@@ -1,7 +1,7 @@
 /* PLAN TO ADD STUFF HERE */
 import React, { useState, useEffect } from 'react';
 import LoadBuildingsTask from '../../../tasks/LoadBuildingsTask';
-import CovidMap from './CovidMap.jsx';
+import CovidMap from './CovidMap';
 import Legend from './Legend';
 import Loading from './Loading';
 
@@ -17,7 +17,7 @@ const Covid19 = () => {
 
   return (
       <div>
-        {buildings.length === 0 ? <Loading/> : <div> <CovidMap/> <Legend/> </div>}
+        {buildings.length === 0 ? <Loading/> : <div><CovidMap/></div>}
       </div>);
 };
 
