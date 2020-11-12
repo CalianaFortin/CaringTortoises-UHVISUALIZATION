@@ -17,7 +17,7 @@ const Covid19 = () => {
 
   return (
       <div>
-        {buildings.length === 0 ? <Loading/> : <div><CovidMap/></div>}
+        {buildings.length === 0 ? <Loading/> : <div><CovidMap/><Legend/></div>}
       </div>);
 };
 
