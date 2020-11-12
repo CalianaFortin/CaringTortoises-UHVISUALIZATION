@@ -4,14 +4,16 @@ import 'leaflet/dist/leaflet.css';
 import datas from '../../../data/campusmap.json';
 
 const CovidMap = () => {
+  <div>Top Right</div>;
   const mapStyle = {
     fillColor: 'white',
     weight: 1,
     color: 'black',
-    fillOpacity: 1,
+    fillOpacity: 0.5,
   };
 
   const onEachBuilding = (building, layer) => {
+    // eslint-disable-next-line no-param-reassign
     layer.options.fillColor = building.properties.color;
     const name = building.properties.Building;
     const confirmedText = building.properties.confirmedText;
