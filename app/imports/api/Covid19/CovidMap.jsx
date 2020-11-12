@@ -5,14 +5,14 @@ import datas from '../../../data/campusmap.json';
 
 const CovidMap = () => {
   const onEachBuilding = (building, layer) => {
-    const name = building.properties.ADMIN;
-    layer.bindPopup('{$name}');
+    const name = building.properties.Building;
+    layer.bindPopup(name);
   };
 
   return (<Map style={{ height: '90vh' }} zoom={17} center={[21.29930, -157.81563]}>
         <GeoJSON
             data={datas}
-            onEachBuilding = {onEachBuilding}
+            onEachFeature = {onEachBuilding}
         />;
         <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
